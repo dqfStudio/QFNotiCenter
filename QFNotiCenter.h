@@ -10,8 +10,9 @@
 
 @interface QFNotiCenter : NSObject
 
-+ (void)registerNoti:(nonnull NSString *)name callback:(void(^_Nullable)())callback;
++ (void)registerNoti:(NSString *_Nullable)name callback:(void(^_Nullable)(NSNotification * _Nullable note))callback;
 + (void)postNoti:(nonnull NSString *)name;
++ (void)postNoti:(nonnull NSString *)name object:(id _Nullable )anObject;
 + (void)removeNoti:(nonnull NSString *)name;
 
 @end

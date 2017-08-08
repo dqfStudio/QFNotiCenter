@@ -31,11 +31,11 @@
     return shareInstance;
 }
 
-+ (void)registerNoti:(NSString *)name callback:(void(^)())callback {
++ (void)registerNoti:(NSString *)name callback:(void(^)(NSNotification * note))callback {
     if (name) {
         id observer = [[NSNotificationCenter defaultCenter] addObserverForName:name object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
             if (callback) {
-                callback();
+                callback(note);
             }
         }];
         
@@ -45,7 +45,13 @@
 
 + (void)postNoti:(NSString *)name {
     if (name) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:name object:nil];
+        [self postNoti:name object:nil];
+    }
+}
+
++ (void)postNoti:(NSString *)name object:(id)anObject {
+    if (name) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:name object:anObject];
     }
 }
 
