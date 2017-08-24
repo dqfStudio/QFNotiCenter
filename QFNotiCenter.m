@@ -59,7 +59,8 @@
     if (name) {
         id observer = [[QFNotiCenter share].mutableDict objectForKey:name];
         if (observer) {
-            [[NSNotificationCenter defaultCenter] removeObserver:observer];            
+            [[NSNotificationCenter defaultCenter] removeObserver:observer];
+            [[QFNotiCenter share].mutableDict removeObjectForKey:name];
         }
     }
 }
